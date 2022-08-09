@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poketest/api/api_client.dart';
 import 'package:poketest/repository/pokemons_repository.dart';
 import 'package:poketest/view/list_screen.dart';
 import 'package:poketest/view/list_screen_viewmodel.dart';
@@ -16,7 +17,7 @@ Widget app() {
   return MultiProvider(
     providers: [
       Provider<PokemonsRepository>(
-        create: (BuildContext context) => PokemonsRepositoryImpl(Dio()),
+        create: (BuildContext context) => PokemonsRepositoryImpl(ApiClient(Dio())),
       ),
       ChangeNotifierProvider<ListScreenViewModel>(
           create: (BuildContext context) => ListScreenViewModel(context.read())),

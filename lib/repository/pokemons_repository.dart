@@ -12,13 +12,10 @@ abstract class PokemonsRepository {
 
 class PokemonsRepositoryImpl implements PokemonsRepository {
 
-  final Dio _dio;
   final _logger = Logger();
   late final ApiClient _apiClient;
 
-  PokemonsRepositoryImpl(this._dio) {
-    _apiClient = ApiClient(_dio);
-  }
+  PokemonsRepositoryImpl(this._apiClient);
 
   @override
   Future<PokePage> getPokemons({int offset = 0, int limit = AppConfig.pageSize }) async {
