@@ -93,6 +93,9 @@ class PokemonScreenState extends State<PokemonScreen> {
       sprites.front_shiny_female
     ].where((element) => element != null).toList();
 
+    if (images.isEmpty) {
+      return const SizedBox.shrink();
+    }
     return CarouselSlider(
       options: CarouselOptions(
           height: 200.0,

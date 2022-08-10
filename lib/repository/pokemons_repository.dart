@@ -19,11 +19,13 @@ class PokemonsRepositoryImpl implements PokemonsRepository {
 
   @override
   Future<PokePage> getPokemons({int offset = 0, int limit = AppConfig.pageSize }) async {
+    _logger.log(Level.info, "Getting page on offset $offset with limit $limit");
     return await _apiClient.getPokemons(offset: offset, limit: limit).catchError((Object e) => _handleErrors(e));
   }
 
   @override
   Future<Pokemon> getPokemon(String name) async {
+    _logger.log(Level.info, "Getting $name");
     return await _apiClient.getPokemon(name).catchError((Object e) => _handleErrors(e));
   }
 

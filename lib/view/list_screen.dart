@@ -37,7 +37,7 @@ class PokeListScreenState extends State<PokeListScreen>  {
             appBar: AppBar(
               title: const Text('Pokemons'),
             ),
-            body: _contents(context)
+            body: SafeArea(child: _contents(context))
         )
     );
   }
@@ -66,13 +66,10 @@ class PokeListScreenState extends State<PokeListScreen>  {
   Widget _listItem(BuildContext context, PokemonShort pokemon, int index) {
     return ListTile(
       title: Text(
-        pokemon.name ?? "",
+        "$index. ${pokemon.name ?? ""}",
         style: Theme.of(context).textTheme.bodyText1,
       ),
-      leading: Text(
-        "$index",
-        style: Theme.of(context).textTheme.headline2,
-      ),
+      leading: const Icon(Icons.account_circle_outlined, color: CustomColors.deepPurple),
       onTap: () {
         Provider.of<PokemonScreenViewModel>(context, listen: false).updatePokemon(pokemon.name ?? "");
         Navigator.pushNamed(context, "PokemonScreen");
